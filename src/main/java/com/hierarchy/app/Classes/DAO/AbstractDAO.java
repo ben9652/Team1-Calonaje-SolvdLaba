@@ -23,17 +23,6 @@ public abstract class AbstractDAO<T,U> implements GenericDAO<T,U> {
     public AbstractDAO(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-    //    @Override
-//    public void insert(T entity) {
-//        try (Connection connection = getConnection()) {
-//            String sql = "INSERT INTO " + getTableName() + " (...) VALUES ";
-//            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-//                stmt.executeUpdate();
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
     @Override
     public void insert(T entity) {
         Map<String, String> fieldColumnMapping = getFieldColumnMapping();
