@@ -5,6 +5,6 @@ package com.hierarchy.app;
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World! Its a push 2");
+        System.out.println("Hello World! Its a push 3");
     }
 }
