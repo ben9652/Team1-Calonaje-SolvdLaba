@@ -19,5 +19,7 @@
         <mapper resource="productMapper.xml"/>
         <mapper resource="meatMapper.xml"/>
         <mapper resource="vegMapper.xml"/>
+        <mapper resource="fruitMapper.xml"/>
+        <mapper resource="breadMapper.xml"/>
     </mappers>
 </configuration>
