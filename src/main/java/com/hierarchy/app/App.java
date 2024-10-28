@@ -3,6 +3,8 @@ package com.hierarchy.app;
 import com.hierarchy.app.Classes.DAO.*;
 import com.hierarchy.app.Classes.Model.*;
 import com.hierarchy.app.Classes.Service.BreadService;
+import com.hierarchy.app.Classes.Service.ChocolateService;
+import com.hierarchy.app.Classes.Service.DairyService;
 import com.hierarchy.app.Classes.Service.FruitService;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -61,8 +63,12 @@ public class App {
         BreadService breadService = new BreadService(breadDAO);
         FruitDAO fruitDAO = new FruitDAO(sqlSessionFactory);
         FruitService fruitService = new FruitService(fruitDAO);
+        ChocolateDAO chocolateDAO = new ChocolateDAO(sqlSessionFactory);
+        ChocolateService chocolateService = new ChocolateService(chocolateDAO);
+        DairyDAO dairyDAO = new DairyDAO(sqlSessionFactory);
+        DairyService dairyService = new DairyService(dairyDAO);
 
-
+        // Breads test
         int breadProductId = 6;
         Product breadProduct = productDAO.findById(breadProductId);
         if (breadProduct == null) {
@@ -70,7 +76,6 @@ public class App {
             productDAO.insert(breadProduct);
             System.out.println("Added product with ID: " + breadProductId);
         }
-
 
         Bread bread = new Bread(breadProductId, "Whole Wheat Bread", 50, 126, "Whole Wheat", "Brand B");
         breadService.addBread(bread);
@@ -91,6 +96,7 @@ public class App {
         breadService.deleteBread(140);
         System.out.println("Deleted bread with ID: 1");
 
+        // Fruits test
         int fruitProductId = 136;
         Product fruitProduct = productDAO.findById(fruitProductId);
         if (fruitProduct == null) {
@@ -119,6 +125,54 @@ public class App {
         fruitService.deleteFruit(154);
         System.out.println("Deleted fruit with ID: 154");
 
+        // Chocolates test
+        int chocolateProductId = 3;
+        Product chocolateProduct = chocolateDAO.findById(chocolateProductId);
+        if(chocolateProduct == null) {
+            chocolateProduct = new Product(chocolateProductId, "Hazelnut chocolate", 1500);
+            productDAO.insert(chocolateProduct);
+            System.out.println("Added product with ID: " + chocolateProductId);
+        }
 
+        Chocolate chocolate = new Chocolate(chocolateProductId, "Golden pleasure", "Ferrero Rocher");
+        chocolateService.addChocolate(chocolate);
+        System.out.println("Added chocolate: " + chocolate.getChocoName());
+
+        Chocolate foundChocolate = chocolateService.getChocolateById(2);
+        if(foundChocolate != null) {
+            System.out.println("Found chocolate: " + foundChocolate.getChocoName() + ", Brand: " + foundChocolate.getBrand());
+        }
+
+        foundChocolate.setChocoName("Chocolate bar");
+        chocolateService.updateChocolate(foundChocolate);
+        System.out.println("Updated chocolate: " + foundChocolate.getChocoName());
+
+        chocolateService.deleteChocolate(2);
+        System.out.println("Deleted chocolate with ID: 154");
+
+        // Dairy test
+        int dairyProductId = 3;
+        Product dairyProduct = chocolateDAO.findById(dairyProductId);
+        if(dairyProduct == null) {
+            dairyProduct = new Product(dairyProductId, "Cheese", 800);
+            productDAO.insert(dairyProduct);
+            System.out.println("Added product with ID: " + dairyProductId);
+        }
+
+        Dairy dairy = new Dairy(dairyProductId, "Cremon cheese", "Ilolay");
+        dairyService.addDairy(dairy);
+        System.out.println("Added dairy: " + chocolate.getChocoName());
+
+        Dairy foundDairy = dairyService.getDairyById(2);
+        if(foundDairy != null) {
+            System.out.println("Found dairy: " + foundDairy.getDairyName() + ", Brand: " + foundDairy.getBrand());
+        }
+
+        foundDairy.setDairyName("Dairy bar");
+        dairyService.updateDairy(foundDairy);
+        System.out.println("Updated dairy: " + foundDairy.getDairyName());
+
+        dairyService.deleteDairy(2);
+        System.out.println("Deleted dairy with ID: 154");
     }
 }
