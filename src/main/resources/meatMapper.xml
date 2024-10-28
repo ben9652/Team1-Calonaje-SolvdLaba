@@ -5,7 +5,10 @@
 <mapper namespace="MeatDAO">
 
     <select id="findById" parameterType="int" resultType="com.hierarchy.app.Classes.Model.Meat">
-        SELECT * FROM Meat WHERE idMeat = #{id}
+        SELECT Product.idProduct, Product.name, Product.price, Meat.idMeat, Meat.cut, Meat.brand
+        FROM Meat
+        JOIN Product ON Meat.idProduct = Product.idProduct
+        WHERE Meat.idMeat = #{id}
     </select>
 
     <select id="getAll" resultType="com.hierarchy.app.Classes.Model.Meat">

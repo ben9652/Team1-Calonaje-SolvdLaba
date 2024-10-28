@@ -5,7 +5,10 @@
 <mapper namespace="VegetableDAO">
 
     <select id="findById" parameterType="int" resultType="com.hierarchy.app.Classes.Model.Vegetables">
-        SELECT * FROM Vegetables WHERE idVegetable = #{id}
+        SELECT Product.idProduct, Product.name, Product.price, Vegetables.idVegetable, Vegetables.vegName, Vegetables.brand
+        FROM Vegetables
+        JOIN Product ON Vegetables.idProduct = Product.idProduct
+        WHERE Vegetables.idVegetable = #{id}
     </select>
 
     <select id="getAll" resultType="com.hierarchy.app.Classes.Model.Vegetables">

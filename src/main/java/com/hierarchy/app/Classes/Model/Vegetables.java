@@ -1,16 +1,15 @@
 package com.hierarchy.app.Classes.Model;
 
-public class Vegetables {
+public class Vegetables extends Product{
     private int idVegetable;
     private String vegName;
     private String brand;
-    private int idProduct;
 
-    public Vegetables(int idVegetable, String vegName, String brand, int idProduct) {
+    public Vegetables(int idProduct,String name,int price,int idVegetable, String vegName, String brand) {
+        super(idProduct, name, price);
         this.idVegetable = idVegetable;
         this.vegName = vegName;
         this.brand = brand;
-        this.idProduct = idProduct;
     }
 
     public int getIdVegetable() {
@@ -36,15 +35,9 @@ public class Vegetables {
     public void setBrand(String brand) {
         this.brand = brand;
     }
-
-    public int getIdProduct() {
-        return idProduct;
-    }
+    @Override
     public String getName() { return vegName; }
 
-    public void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
-    }
     @Override
     public String toString() {
         return "Vegetable: id= " + idVegetable + ", name= " + vegName + ", brand= " + brand + ".";
