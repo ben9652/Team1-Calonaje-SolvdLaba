@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.rg//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ChocolateDAO">
+    <select id="findById" parameterType="int" resultType="com.hierarchy.app.Classes.Model.Chocolate">
+        SELECT p.idProduct, p.name, p.price, c.idChocolate, c.chocoName, c.Brand
+        FROM Chocolate c
+        JOIN Product p ON c.idProduct = p.idProduct
+        WHERE c.idChocolate = #{id}
+    </select>
+
+    <select id="getAll" resultType="com.hierarchy.app.Classes.Model.Chocolate">
+        SELECT * FROM Chocolate
+    </select>
+
+    <insert id="insert" parameterType="com.hierarchy.app.Classes.Model.Chocolate">
+        INSERT INTO Chocolate (idChocolate, chocoName, Brand, idProduct) VALUES (#{idChocolate}, #{chocoName}, #{brand}, #{idProduct})
+    </insert>
+
+    <update id="update" parameterType="com.hierarchy.app.Classes.Model.Chocolate">
+        UPDATE Chocolate SET chocoName = #{chocoName}, Brand = #{brand} WHERE idChocolate = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM Chocolate WHERE idChocolate = #{id}
+    </delete>
+</mapper>
