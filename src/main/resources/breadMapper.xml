@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BreadDAO">
+
+    <select id="findById" parameterType="int" resultType="com.hierarchy.app.Classes.Model.Bread">
+        SELECT Product.idProduct, Product.Name, Product.Price, Bread.idBread, Bread.breadName, Bread.Brand
+        FROM Bread
+        JOIN Product ON Bread.idProduct = Product.idProduct
+        WHERE Bread.idBread = #{id}
+    </select>
+
+    <select id="getAll" resultType="com.hierarchy.app.Classes.Model.Bread">
+        SELECT * FROM Bread
+    </select>
+
+    <insert id="insert" parameterType="com.hierarchy.app.Classes.Model.Bread">
+        INSERT INTO Bread (idBread, breadName, brand, idProduct) VALUES (#{idBread}, #{breadName}, #{Brand}, #{idProduct})
+    </insert>
+
+    <update id="update" parameterType="com.hierarchy.app.Classes.Model.Bread">
+        UPDATE Bread SET breadName = #{breadName}, brand = #{brand} WHERE idBread = #{idBread}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM Bread WHERE idBread = #{id}
+    </delete>
+</mapper>

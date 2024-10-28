@@ -18,6 +18,8 @@ public class App {
         ProductDAO productDAO = new ProductDAO(sqlSessionFactory);
         MeatDAO meatDAO = new MeatDAO(sqlSessionFactory);
         VegetableDAO vegetableDAO = new VegetableDAO(sqlSessionFactory);
+        FruitDAO fruitDAO = new FruitDAO(sqlSessionFactory);
+        BreadDAO breadDAO = new BreadDAO(sqlSessionFactory);
         ChocolateDAO chocolateDAO = new ChocolateDAO(sqlSessionFactory);
         DairyDAO dairyDAO = new DairyDAO(sqlSessionFactory);
 
@@ -29,6 +31,11 @@ public class App {
         Vegetables veg = vegetableDAO.findById(1);
         System.out.println(veg.getName());
 
+        Fruit fruit = fruitDAO.findById(1);
+        System.out.println("Fruit Name: " + fruit.getFruitName());
+        Bread bread = breadDAO.findById(1);
+        System.out.println("Bread Name: " + bread.getBreadName());
+
         // Chocolate example
         Chocolate chocolate = chocolateDAO.findById(1);
         System.out.println(chocolate.getName());
@@ -37,5 +44,4 @@ public class App {
         Dairy dairy = dairyDAO.findById(1);
         System.out.println(dairy.getName());
     }
-
 }

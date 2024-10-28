@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FruitDAO">
+
+    <select id="findById" parameterType="int" resultType="com.hierarchy.app.Classes.Model.Fruit">
+        SELECT Product.idProduct, Product.Name, Product.Price, Fruits.idFruit, Fruits.fruitName, Fruits.Brand
+        FROM Fruits
+        JOIN Product ON Fruits.idProduct = Product.idProduct
+        WHERE Fruits.idFruit = #{id}
+    </select>
+
+    <select id="getAll" resultType="com.hierarchy.app.Classes.Model.Fruit">
+        SELECT * FROM Fruits
+    </select>
+
+    <insert id="insert" parameterType="com.hierarchy.app.Classes.Model.Fruit">
+        INSERT INTO Fruits (idFruit, fruitName, brand, idProduct) VALUES (#{idFruit}, #{fruitName}, #{brand}, #{idProduct})
+    </insert>
+
+    <update id="update" parameterType="com.hierarchy.app.Classes.Model.Fruit">
+        UPDATE Fruits SET fruitName = #{fruitName}, brand = #{brand} WHERE idFruit = #{idFruit}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM Fruits WHERE idFruit = #{id}
+    </delete>
+</mapper>
