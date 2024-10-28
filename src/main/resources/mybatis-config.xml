@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--Para poder añadir este link, tienen que añadirlo en settings->schemas and DTS y despues apretan ALT ENTER sobre el link y ponen fetch external resource -->
+<configuration>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://boeris.zapto.org:3306/Products"/>
+                <property name="username" value="Team1Solvd"/>
+                <property name="password" value="SOLVDLaba"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="productMapper.xml"/>
+        <mapper resource="meatMapper.xml"/>
+        <mapper resource="vegMapper.xml"/>
+    </mappers>
+</configuration>

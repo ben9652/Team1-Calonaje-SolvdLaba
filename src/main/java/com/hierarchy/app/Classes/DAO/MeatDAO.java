@@ -1,16 +1,17 @@
 package com.hierarchy.app.Classes.DAO;
 
-import com.hierarchy.app.Classes.Model.Product;
+import com.hierarchy.app.Classes.Model.Meat;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 
-public class ProductDAO extends AbstractDAO<Product, Integer>{
+public class MeatDAO extends AbstractDAO<Meat, Integer>{
 
-    public ProductDAO(SqlSessionFactory sqlSessionFactory) {
+    public MeatDAO(SqlSessionFactory sqlSessionFactory) {
         super(sqlSessionFactory);
     }
 
     @Override
     protected String getMapperNamespace() {
-        return "ProductDAO";
+        return "MeatDAO";
     }
 }

@@ -26,7 +26,7 @@ CREATE TABLE Meat (
 
   CREATE TABLE Vegetables (
   idVegetable INT NOT NULL,
-  Name VARCHAR(45) NULL,
+  vegName VARCHAR(45) NULL,
   Brand VARCHAR(45) NULL,
   idProduct INT(11) UNIQUE,
   FOREIGN KEY (idProduct) REFERENCES Product(idProduct),
@@ -35,7 +35,7 @@ CREATE TABLE Meat (
 
   CREATE TABLE Fruits (
   idFruit INT NOT NULL,
-  Name VARCHAR(45) NULL,
+  fruitName VARCHAR(45) NULL,
   Brand VARCHAR(45) NULL,
   idProduct INT(11) UNIQUE,
   FOREIGN KEY (idProduct) REFERENCES Product(idProduct),
@@ -44,7 +44,7 @@ CREATE TABLE Meat (
 
   CREATE TABLE Dairy (
   idDairy INT NOT NULL,
-  Name VARCHAR(45) NULL,
+  dairyName VARCHAR(45) NULL,
   Brand VARCHAR(45) NULL,
   idProduct INT(11) UNIQUE,
   FOREIGN KEY (idProduct) REFERENCES Product(idProduct),
@@ -53,7 +53,7 @@ CREATE TABLE Meat (
 
   CREATE TABLE Bread (
   idBread INT NOT NULL,
-  Name VARCHAR(45) NULL,
+  breadName VARCHAR(45) NULL,
   Brand VARCHAR(45) NULL,
   idProduct INT(11) UNIQUE,
   FOREIGN KEY (idProduct) REFERENCES Product(idProduct),
@@ -62,7 +62,7 @@ CREATE TABLE Meat (
 
   CREATE TABLE Candy (
   idCandy INT NOT NULL,
-  Name VARCHAR(45) NULL,
+  candyName VARCHAR(45) NULL,
   Brand VARCHAR(45) NULL,
   idProduct INT(11) UNIQUE,
   FOREIGN KEY (idProduct) REFERENCES Product(idProduct),
@@ -71,7 +71,7 @@ CREATE TABLE Meat (
 
   CREATE TABLE Chocolate (
   idChocolate INT NOT NULL,
-  Name VARCHAR(45) NULL,
+  chocoName VARCHAR(45) NULL,
   Brand VARCHAR(45) NULL,
   idProduct INT(11) UNIQUE,
   FOREIGN KEY (idProduct) REFERENCES Product(idProduct),
@@ -80,7 +80,7 @@ CREATE TABLE Meat (
 
   CREATE TABLE Charcuterie (
   idCharcuterie INT NOT NULL,
-  Name VARCHAR(45) NULL,
+  charcuterieName VARCHAR(45) NULL,
   Brand VARCHAR(45) NULL,
   idProduct INT(11) UNIQUE,
   FOREIGN KEY (idProduct) REFERENCES Product(idProduct),
@@ -89,7 +89,7 @@ CREATE TABLE Meat (
 
 CREATE TABLE Snacks (
   idSnack INT NOT NULL,
-  Name VARCHAR(45) NULL,
+  snackName VARCHAR(45) NULL,
   Brand VARCHAR(45) NULL,
   idProduct INT(11) UNIQUE,
   FOREIGN KEY (idProduct) REFERENCES Product(idProduct),
@@ -98,7 +98,7 @@ CREATE TABLE Snacks (
 
   CREATE TABLE Drinks (
   idDrink INT NOT NULL,
-  Name VARCHAR(45) NULL,
+  drinkName VARCHAR(45) NULL,
   Brand VARCHAR(45) NULL,
   idProduct INT(11) UNIQUE,
   FOREIGN KEY (idProduct) REFERENCES Product(idProduct),
@@ -107,7 +107,7 @@ CREATE TABLE Snacks (
 
   CREATE TABLE Cereals (
   idCereal INT NOT NULL,
-  Name VARCHAR(45) NULL,
+  cerealName VARCHAR(45) NULL,
   Brand VARCHAR(45) NULL,
   idProduct INT(11) UNIQUE,
   FOREIGN KEY (idProduct) REFERENCES Product(idProduct),
