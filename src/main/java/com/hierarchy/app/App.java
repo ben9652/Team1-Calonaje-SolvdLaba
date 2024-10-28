@@ -18,8 +18,6 @@ public class App {
         ProductDAO productDAO = new ProductDAO(sqlSessionFactory);
         MeatDAO meatDAO = new MeatDAO(sqlSessionFactory);
         VegetableDAO vegetableDAO = new VegetableDAO(sqlSessionFactory);
-        FruitDAO fruitDAO = new FruitDAO(sqlSessionFactory);
-        BreadDAO breadDAO = new BreadDAO(sqlSessionFactory);
 
         // Usage example
         Product product = productDAO.findById(1);
@@ -34,7 +32,14 @@ public class App {
         Bread bread = breadDAO.findById(1);
         System.out.println("Bread Name: " + bread.getBreadName());
 
+        // Chocolate example
+        Chocolate chocolate = chocolateDAO.findById(1);
+        System.out.println(chocolate.getName());
 
+        // Dairy example
+        Dairy dairy = dairyDAO.findById(1);
+        System.out.println(dairy.getName());
+    }
     }
 
 }

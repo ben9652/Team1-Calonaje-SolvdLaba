@@ -21,5 +21,7 @@
         <mapper resource="vegMapper.xml"/>
         <mapper resource="fruitMapper.xml"/>
         <mapper resource="breadMapper.xml"/>
+        <mapper resource="chocolateMapper.xml"/>
+        <mapper resource="dairyMapper.xml"/>
     </mappers>
 </configuration>
