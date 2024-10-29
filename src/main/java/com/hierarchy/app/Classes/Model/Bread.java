@@ -37,4 +37,9 @@ public class Bread extends Product {
     public void setBreadName(String breadName) {
         this.Name = breadName;
     }
+
+    @Override
+    public String toString() {
+        return "Bread: id= " + idBread + ", name= " + Name + ", brand= " + Brand + ".";
+    }
 }

@@ -20,7 +20,7 @@
     </insert>
 
     <update id="update" parameterType="com.hierarchy.app.Classes.Model.Vegetables">
-        UPDATE Vegetables SET vegName = #{vegName}, brand = #{brand} WHERE idVegetable = #{id}
+        UPDATE Vegetables SET vegName = #{vegName}, brand = #{brand} WHERE idVegetable = #{idVegetable}
     </update>
 
     <delete id="delete" parameterType="int">

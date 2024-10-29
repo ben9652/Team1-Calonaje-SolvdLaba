@@ -37,4 +37,8 @@ public class Fruit extends Product{
         this.idFruit = idFruit;
     }
 
+    @Override
+    public String toString() {
+        return "Fruit: id= " + idFruit + ", name= " + fruitName + ", brand= " + brand + ".";
+    }
 }
