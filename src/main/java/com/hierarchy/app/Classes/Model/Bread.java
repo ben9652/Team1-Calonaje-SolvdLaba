@@ -3,13 +3,13 @@ package com.hierarchy.app.Classes.Model;
 public class Bread extends Product {
     private int idBread;
     private String Name;
-    private String brand;
+    private String Brand;
 
-    public Bread(int idProduct, String name, int price, int idBread, String Name, String brand) {
+    public Bread(int idProduct, String name, int price, int idBread, String Name, String Brand) {
         super(idProduct, name, price);
         this.idBread = idBread;
         this.Name = Name;
-        this.brand = brand;
+        this.Brand = Brand;
 
     }
 
@@ -22,7 +22,7 @@ public class Bread extends Product {
     }
 
     public String getBrand() {
-        return brand;
+        return Brand;
     }
 
 
@@ -31,7 +31,7 @@ public class Bread extends Product {
     }
 
     public void setBrand(String brand) {
-        this.brand = brand;
+        this.Brand = brand;
     }
 
     public void setBreadName(String breadName) {
