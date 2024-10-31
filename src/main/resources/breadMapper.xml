@@ -12,15 +12,17 @@
     </select>
 
     <select id="getAll" resultType="com.hierarchy.app.Classes.Model.Bread">
-        SELECT * FROM Bread
+        SELECT Product.idProduct, Product.Name, Product.Price, Bread.idBread, Bread.breadName, Bread.Brand
+        FROM Bread
+        JOIN Product ON Bread.idProduct = Product.idProduct
     </select>
 
     <insert id="insert" parameterType="com.hierarchy.app.Classes.Model.Bread">
-        INSERT INTO Bread (idBread, breadName, brand, idProduct) VALUES (#{idBread}, #{breadName}, #{Brand}, #{idProduct})
+        INSERT INTO Bread (idBread, breadName, Brand, idProduct) VALUES (#{idBread}, #{breadName}, #{Brand}, #{idProduct})
     </insert>
 
     <update id="update" parameterType="com.hierarchy.app.Classes.Model.Bread">
-        UPDATE Bread SET breadName = #{breadName}, brand = #{brand} WHERE idBread = #{idBread}
+        UPDATE Bread SET breadName = #{breadName}, Brand = #{Brand} WHERE idBread = #{idBread}
     </update>
 
     <delete id="delete" parameterType="int">
