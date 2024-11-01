@@ -11,6 +11,8 @@ import com.hierarchy.app.Classes.Strategy.FullUpdateStrategy;
 import com.hierarchy.app.Classes.Model.*;
 import com.hierarchy.app.Classes.Strategy.QuickUpdateStrategy;
 import com.hierarchy.app.Classes.Service.BreadService;
+import com.hierarchy.app.Classes.Service.ProductService;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -223,8 +225,15 @@ public class App {
     }
 
         // Chocolate
+
+        // Listener, Facade, and Decorator
+        ProductService productServiceForChocolate = new ProductService(new ProductDAO(sqlSessionFactory));
+
+        Product chocolateProduct = new Product(40, "Chocolate", 500);
+        productServiceForChocolate.addProduct(chocolateProduct);
+        
         ChocolateFacade chocolateFacade = new ChocolateFacade(sqlSessionFactory);
-        Chocolate newChocolate = new Chocolate(5, "Bon o Bon", "Arcor");
+        Chocolate newChocolate = new Chocolate(chocolateProduct.getIdProduct(), chocolateProduct.getName(), chocolateProduct.getPrice(), 2, "Bon o Bon", "Arcor");
         chocolateFacade.addChocolate(newChocolate);
 
         Chocolate gotChocolate = chocolateFacade.getChocolateById(3);
@@ -233,7 +242,7 @@ public class App {
                 chocolateFacade.updateChocolate(gotChocolate);
         }
 
-        DiscountDecorator chocolateDecorator = new DiscountDecorator(newChocolate, 10);
+        DiscountDecorator chocolateDecorator = new DiscountDecorator(newChocolate, 0.1);
         logger.info(chocolateDecorator);
     }
 }
