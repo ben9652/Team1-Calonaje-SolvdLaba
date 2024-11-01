@@ -194,5 +194,29 @@ public class App {
 
 // Eliminar pan
         breadController.deleteBread(101);
+
+        //Factories
+        orderFactory factory=new orderFactory();
+
+        packageFactory meatFactory=new meatFactory();
+        ProductOrder meatOrder=factory.createOrder("Meat");
+        orderPackaging meatPackaging=meatFactory.createPackaging();
+        meatOrder.prepareOrder();
+        meatPackaging.packOrder();
+
+        packageFactory vegetableFactory=new vegetableFactory();
+        ProductOrder vegetableOrder=factory.createOrder("Vegetable");
+        orderPackaging vegetablePackaging=vegetableFactory.createPackaging();
+        vegetableOrder.prepareOrder();
+        vegetablePackaging.packOrder();
+        
+        //Builder
+        Order order =new Order.orderBuilder(1,43,400)
+                .setExpirationDate("23/04/2024")
+                .setEmissionDate("23/03/2024")
+                .setLocation("Coto Supermarket")
+                .build();
+        logger.info(order);
+    }
     }
 }
