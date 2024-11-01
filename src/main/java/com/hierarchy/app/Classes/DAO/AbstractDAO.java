@@ -25,7 +25,7 @@ public abstract class AbstractDAO<T,U> implements GenericDAO<T,U> {
     @Override
     public List<T> getAll() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.selectList(getMapperNamespace() + ".findAll");
+            return session.selectList(getMapperNamespace() + ".getAll");
         }
     }
 

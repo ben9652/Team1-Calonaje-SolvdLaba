@@ -6,6 +6,7 @@ import com.hierarchy.app.Classes.Model.Bread;
 import java.util.List;
 
 public class BreadService {
+
     private final BreadDAO breadDAO;
 
     public BreadService(BreadDAO breadDAO) {
