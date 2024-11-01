@@ -11,6 +11,10 @@
         WHERE Bread.idBread = #{id}
     </select>
 
+    <update id="updateBreadName" parameterType="com.hierarchy.app.Classes.Model.Bread">
+        UPDATE Bread SET breadName = #{breadName} WHERE idBread = #{idBread}
+    </update>
+
     <select id="getAll" resultType="com.hierarchy.app.Classes.Model.Bread">
         SELECT Product.idProduct, Product.Name, Product.Price, Bread.idBread, Bread.breadName, Bread.Brand
         FROM Bread

@@ -156,18 +156,17 @@ public class App {
 
         // Crear instancia de BreadDAO
         BreadDAO breadDAO = new BreadDAO(sqlSessionFactory);
+        BreadService breadService = new BreadService(breadDAO);
 
 // Crear proxy usando BreadDAO
-        BreadDAOProxy breadDAOProxy = new BreadDAOProxy(breadDAO);
+        BreadDAOProxy breadDAOProxy = new BreadDAOProxy(breadService); // Cambiado para usar el servicio
 
-// Crear el servicio usando BreadDAO (no el proxy)
-        BreadService breadService = new BreadService(breadDAO);
 
 // Crear el controlador con el servicio configurado
         BreadController breadController = new BreadController(breadService);
 
-// Crear estrategias de actualización con BreadDAO (sin el proxy)
-        FullUpdateStrategy fullUpdateStrategy = new FullUpdateStrategy(breadDAO);
+// Crear estrategias de actualización usando el proxy
+        FullUpdateStrategy fullUpdateStrategy = new FullUpdateStrategy(breadDAOProxy);
         QuickUpdateStrategy quickUpdateStrategy = new QuickUpdateStrategy(breadDAO);
 
 // Crear una instancia de BreadView

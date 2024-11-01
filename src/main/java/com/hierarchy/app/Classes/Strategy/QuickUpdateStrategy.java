@@ -16,8 +16,7 @@ public class QuickUpdateStrategy implements UpdateStrategy<Bread> {
 
     @Override
     public void update(Bread bread) {
-        // Perform quick update
         logger.info("Performing quick update on Bread: " + bread.getBreadName());
-        breadDAO.update(bread);
+        breadDAO.updateBreadName(bread.getIdBread(), bread.getBreadName());
     }
 }
