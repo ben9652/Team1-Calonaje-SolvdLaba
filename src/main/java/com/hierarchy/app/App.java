@@ -4,14 +4,20 @@ import com.hierarchy.app.Classes.MVC.BreadController;
 import com.hierarchy.app.Classes.MVC.BreadView;
 import com.hierarchy.app.Classes.Proxy.BreadDAOProxy;
 import com.hierarchy.app.Classes.DAO.*;
-import com.hierarchy.app.Classes.Decorators.ChocolateDecorator;
 import com.hierarchy.app.Classes.Decorators.DiscountDecorator;
 import com.hierarchy.app.Classes.Facade.ChocolateFacade;
 import com.hierarchy.app.Classes.Strategy.FullUpdateStrategy;
 import com.hierarchy.app.Classes.Model.*;
+import com.hierarchy.app.Classes.Model.AbstractFactory.meatFactory;
+import com.hierarchy.app.Classes.Model.AbstractFactory.vegetableFactory;
+import com.hierarchy.app.Classes.Model.Builder.Order;
+import com.hierarchy.app.Classes.Model.Factory.orderFactory;
 import com.hierarchy.app.Classes.Strategy.QuickUpdateStrategy;
 import com.hierarchy.app.Classes.Service.BreadService;
 import com.hierarchy.app.Classes.Service.ProductService;
+import com.hierarchy.app.Classes.Interfaces.ProductOrder;
+import com.hierarchy.app.Classes.Interfaces.orderPackaging;
+import com.hierarchy.app.Classes.Interfaces.packageFactory;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -222,9 +228,6 @@ public class App {
                 .setLocation("Coto Supermarket")
                 .build();
         logger.info(order);
-    }
-
-        // Chocolate
 
         // Listener, Facade, and Decorator
         ProductService productServiceForChocolate = new ProductService(new ProductDAO(sqlSessionFactory));
