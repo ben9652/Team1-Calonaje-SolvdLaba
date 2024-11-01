@@ -4,6 +4,9 @@ import com.hierarchy.app.Classes.MVC.BreadController;
 import com.hierarchy.app.Classes.MVC.BreadView;
 import com.hierarchy.app.Classes.Proxy.BreadDAOProxy;
 import com.hierarchy.app.Classes.DAO.*;
+import com.hierarchy.app.Classes.Decorators.ChocolateDecorator;
+import com.hierarchy.app.Classes.Decorators.DiscountDecorator;
+import com.hierarchy.app.Classes.Facade.ChocolateFacade;
 import com.hierarchy.app.Classes.Strategy.FullUpdateStrategy;
 import com.hierarchy.app.Classes.Model.*;
 import com.hierarchy.app.Classes.Strategy.QuickUpdateStrategy;
@@ -218,5 +221,19 @@ public class App {
                 .build();
         logger.info(order);
     }
+
+        // Chocolate
+        ChocolateFacade chocolateFacade = new ChocolateFacade(sqlSessionFactory);
+        Chocolate newChocolate = new Chocolate(5, "Bon o Bon", "Arcor");
+        chocolateFacade.addChocolate(newChocolate);
+
+        Chocolate gotChocolate = chocolateFacade.getChocolateById(3);
+        if(gotChocolate != null) {
+                gotChocolate.setChocoName("Gen candy");
+                chocolateFacade.updateChocolate(gotChocolate);
+        }
+
+        DiscountDecorator chocolateDecorator = new DiscountDecorator(newChocolate, 10);
+        logger.info(chocolateDecorator);
     }
 }
