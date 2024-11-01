@@ -159,7 +159,7 @@ public class App {
         BreadService breadService = new BreadService(breadDAO);
 
 // Crear proxy usando BreadDAO
-        BreadDAOProxy breadDAOProxy = new BreadDAOProxy(breadService); // Cambiado para usar el servicio
+        BreadDAOProxy breadDAOProxy = new BreadDAOProxy(breadService);
 
 
 // Crear el controlador con el servicio configurado
