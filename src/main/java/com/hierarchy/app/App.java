@@ -1,19 +1,13 @@
 package com.hierarchy.app;
 
+import com.hierarchy.app.Classes.MVC.BreadController;
+import com.hierarchy.app.Classes.MVC.BreadView;
+import com.hierarchy.app.Classes.Proxy.BreadDAOProxy;
 import com.hierarchy.app.Classes.DAO.*;
-import com.hierarchy.app.Classes.Interfaces.ProductOrder;
-import com.hierarchy.app.Classes.Interfaces.orderPackaging;
-import com.hierarchy.app.Classes.Interfaces.packageFactory;
+import com.hierarchy.app.Classes.Strategy.FullUpdateStrategy;
 import com.hierarchy.app.Classes.Model.*;
-import com.hierarchy.app.Classes.Model.AbstractFactory.meatFactory;
-import com.hierarchy.app.Classes.Model.AbstractFactory.meatPackaging;
-import com.hierarchy.app.Classes.Model.AbstractFactory.vegetableFactory;
-import com.hierarchy.app.Classes.Model.Builder.Order;
-import com.hierarchy.app.Classes.Model.Factory.orderFactory;
+import com.hierarchy.app.Classes.Strategy.QuickUpdateStrategy;
 import com.hierarchy.app.Classes.Service.BreadService;
-import com.hierarchy.app.Classes.Service.ChocolateService;
-import com.hierarchy.app.Classes.Service.DairyService;
-import com.hierarchy.app.Classes.Service.FruitService;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -21,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 
 public class App {
@@ -30,9 +25,9 @@ public class App {
         System.setProperty("log4j2.configurationFile",log4jfile.toURI().toString());
         logger= LogManager.getLogger(App.class);
 
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder()
-                .build(Resources.getResourceAsStream("mybatis-config.xml"));
-
+       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder()
+               .build(Resources.getResourceAsStream("mybatis-config.xml"));
+//
 //        ProductDAO productDAO = new ProductDAO(sqlSessionFactory);
 //        BreadDAO breadDAO = new BreadDAO(sqlSessionFactory);
 //        BreadService breadService = new BreadService(breadDAO);
@@ -158,25 +153,46 @@ public class App {
 //        dairyService.deleteDairy(2);
 //        logger.info("Deleted dairy with ID: 154");
 
-        orderFactory factory=new orderFactory();
 
-        packageFactory meatFactory=new meatFactory();
-        ProductOrder meatOrder=factory.createOrder("Meat");
-        orderPackaging meatPackaging=meatFactory.createPackaging();
-        meatOrder.prepareOrder();
-        meatPackaging.packOrder();
+        // Crear instancia de BreadDAO
+        BreadDAO breadDAO = new BreadDAO(sqlSessionFactory);
+        BreadService breadService = new BreadService(breadDAO);
 
-        packageFactory vegetableFactory=new vegetableFactory();
-        ProductOrder vegetableOrder=factory.createOrder("Vegetable");
-        orderPackaging vegetablePackaging=vegetableFactory.createPackaging();
-        vegetableOrder.prepareOrder();
-        vegetablePackaging.packOrder();
+// Crear proxy usando BreadDAO
+        BreadDAOProxy breadDAOProxy = new BreadDAOProxy(breadService);
 
-        Order order =new Order.orderBuilder(1,43,400)
-                .setExpirationDate("23/04/2024")
-                .setEmissionDate("23/03/2024")
-                .setLocation("Coto Supermarket")
-                .build();
-        logger.info(order);
+
+// Crear el controlador con el servicio configurado
+        BreadController breadController = new BreadController(breadService);
+
+// Crear estrategias de actualización usando el proxy
+        FullUpdateStrategy fullUpdateStrategy = new FullUpdateStrategy(breadDAOProxy);
+        QuickUpdateStrategy quickUpdateStrategy = new QuickUpdateStrategy(breadDAO);
+
+// Crear una instancia de BreadView
+        BreadView breadView = new BreadView();
+
+// Probar el patrón MVC: agregar, actualizar y eliminar pan
+// Bread newBread = new Bread(87, "Whole Wheat Bread", 50, 102, "Pan Integral", "BrandA");
+// breadController.addBread(newBread);
+
+// Obtener y mostrar pan por ID
+        Bread retrievedBread = breadController.getBreadById(2);
+        logger.info("Retrieved Bread: " + retrievedBread.getBreadName());
+        breadView.displayBread(retrievedBread); // Mostrar detalles del pan
+
+// Probar la estrategia de actualización completa
+        fullUpdateStrategy.update(retrievedBread);
+
+// Cambiar algunos atributos y realizar una actualización rápida
+        retrievedBread.setBreadName("Updated Bread Name");
+        quickUpdateStrategy.update(retrievedBread);
+
+// Obtener todos los panes y mostrarlos
+        List<Bread> allBreads = breadController.getAllBreads();
+        breadView.displayBreadList(allBreads); // Mostrar la lista de panes
+
+// Eliminar pan
+        breadController.deleteBread(101);
     }
 }
